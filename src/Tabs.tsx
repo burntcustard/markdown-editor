@@ -124,7 +124,13 @@ export const Tabs = () => {
             hidden={selectedTabIndex() === index ? undefined : true}
           >
             <SolidMarkdown class="markdown-wrapper" children={tab().grayMatter?.content} />
-            <textarea rows="8" cols="33" oninput={(e) => updateTab(tab().id, e.target.value)}>
+            <label for={`tab-md-input-${index}`} style="display: block">Markdown text input</label>
+            <textarea
+              id={`tab-md-input-${index}`}
+              rows="8"
+              cols="33"
+              oninput={(e) => updateTab(tab().id, e.target.value)}
+            >
               {tab().rawText}
             </textarea>
           </div>
