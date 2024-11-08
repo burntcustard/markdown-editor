@@ -5,6 +5,7 @@ import solid from 'vite-plugin-solid'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/random-encounter-pwa/',
   plugins: [solid(), nodePolyfills(), VitePWA({
     registerType: 'autoUpdate',
     injectRegister: false,
