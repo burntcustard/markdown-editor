@@ -1,7 +1,7 @@
 import { createEffect, createSignal, Index, on } from 'solid-js'
-import { createStore, produce } from 'solid-js/store';
+import { createStore, produce } from 'solid-js/store'
 import { SolidMarkdown } from 'solid-markdown'
-import matter from 'gray-matter';
+import matter from 'gray-matter'
 import defaultTabData from './default-tab-data.md?raw'
 
 const silentMatter = (rawText: string) => {
@@ -26,7 +26,7 @@ export const Tabs = () => {
     id: number;
     grayMatter: ReturnType<typeof silentMatter>;
     rawText: string;
-  }[]>([]);
+  }[]>([])
 
   const addTab = (rawText: string) => {
     setTabStore(
@@ -50,6 +50,12 @@ export const Tabs = () => {
     )
   }
 
+  const removeTab = (id: number) => {
+    setTabStore(tabData => tabData.filter((t) => t.id !== id))
+    // Set the selected tab to the one of the left of the removed one
+    if (selectedTabIndex() >= tabStore.length) setSelectedTabIndex(tabStore.length - 1)
+  }
+
   createEffect(() => {
     localStorage.setItem('tabsData', JSON.stringify(tabStore.map((tab) => tab.rawText)))
   }, { defer: true })
@@ -68,7 +74,13 @@ export const Tabs = () => {
     for (const file of event.target.files) {
       // TODO: Don't add files that are identical to existing ones - show a warning message instead.
       addTab(await file.text())
+      setSelectedTabIndex(tabStore.length - 1)
     }
+  }
+
+  const handleAddTabButtonClick = () => {
+    addTab('---\ntitle: New tab X\n---\n\n# Heading 1')
+    setSelectedTabIndex(tabStore.length - 1)
   }
 
   return (
@@ -85,17 +97,21 @@ export const Tabs = () => {
 
       <div role="tablist" aria-label="Tabs">
         <Index each={tabStore}>{(tab, index) =>
-          <button
-            role="tab"
-            aria-selected={selectedTabIndex() === index}
-            aria-controls={`panel-${index}`}
-            id={`tab-button-${index}`}
-            tabindex={selectedTabIndex() === index ? 0 : -1}
-            onClick={() => setSelectedTabIndex(index)}
-          >
-            {tab().grayMatter?.data.title}
-          </button>
+          <div>
+            <button
+              role="tab"
+              aria-selected={selectedTabIndex() === index}
+              aria-controls={`panel-${index}`}
+              id={`tab-button-${index}`}
+              tabindex={selectedTabIndex() === index ? 0 : -1}
+              onClick={() => setSelectedTabIndex(index)}
+            >
+              {tab().grayMatter?.data.title}
+            </button>
+            <button onClick={() => removeTab(tab().id)}>x</button>
+          </div>
         }</Index>
+        <button onClick={handleAddTabButtonClick}>+</button>
       </div>
 
       <div>
