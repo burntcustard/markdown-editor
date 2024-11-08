@@ -3,6 +3,7 @@ import { createStore, produce } from 'solid-js/store'
 import { SolidMarkdown } from 'solid-markdown'
 import matter from 'gray-matter'
 import defaultTabData from './default-tab-data.md?raw'
+import { Toolbar } from './Toolbar'
 
 const silentMatter = (rawText: string) => {
   let grayMatter = null
@@ -26,12 +27,13 @@ export const Tabs = () => {
     id: number;
     grayMatter: ReturnType<typeof silentMatter>;
     rawText: string;
+    editorHidden: boolean;
   }[]>([])
 
   const addTab = (rawText: string) => {
     setTabStore(
       produce((tabsData) => {
-        tabsData.push({ id: ++ tabId, grayMatter: silentMatter(rawText), rawText })
+        tabsData.push({ id: ++ tabId, grayMatter: silentMatter(rawText), rawText, editorHidden: false })
       })
     )
   }
@@ -54,6 +56,13 @@ export const Tabs = () => {
     setTabStore(tabData => tabData.filter((t) => t.id !== id))
     // Set the selected tab to the one of the left of the removed one
     if (selectedTabIndex() >= tabStore.length) setSelectedTabIndex(tabStore.length - 1)
+  }
+
+  const tabToggleEditor = (id: number) => {
+    setTabStore(
+      tab => tab.id === id,
+      produce((tab) => (tab.editorHidden = !tab.editorHidden)),
+    )
   }
 
   createEffect(() => {
@@ -97,42 +106,52 @@ export const Tabs = () => {
 
       <div role="tablist" aria-label="Tabs">
         <Index each={tabStore}>{(tab, index) =>
-          <div>
-            <button
-              role="tab"
-              aria-selected={selectedTabIndex() === index}
-              aria-controls={`panel-${index}`}
-              id={`tab-button-${index}`}
-              tabindex={selectedTabIndex() === index ? 0 : -1}
-              onClick={() => setSelectedTabIndex(index)}
-            >
-              {tab().grayMatter?.data.title}
-            </button>
-            <button onClick={() => removeTab(tab().id)}>x</button>
-          </div>
+          <button
+            role="tab"
+            aria-selected={selectedTabIndex() === index}
+            aria-controls={`panel-${index}`}
+            id={`tab-button-${index}`}
+            tabindex={selectedTabIndex() === index ? -1 : 0}
+            onClick={() => setSelectedTabIndex(index)}
+          >
+            {tab().grayMatter?.data.title}
+          </button>
         }</Index>
-        <button onClick={handleAddTabButtonClick}>+</button>
+
+        <button onClick={handleAddTabButtonClick} class="add">
+          <svg width="16" height="16" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" stroke="currentcolor">
+            <path d="M1 4 H7 M4 1 V7"/>
+          </svg>
+        </button>
       </div>
 
-      <div>
+      <div class="panel-wrapper">
         <Index each={tabStore}>{(tab, index) =>
           <div
             id={`panel-${index}`}
             role="tabpanel"
             tabindex="0"
             aria-labelledby={`tab-button-${index}`}
-            hidden={selectedTabIndex() === index ? undefined : true}
+            aria-hidden={selectedTabIndex() === index ? undefined : true}
+            class="tab-content"
           >
-            <SolidMarkdown class="markdown-wrapper" children={tab().grayMatter?.content} />
-            <label for={`tab-md-input-${index}`} style="display: block">Markdown text input</label>
-            <textarea
-              id={`tab-md-input-${index}`}
-              rows="8"
-              cols="33"
-              oninput={(e) => updateTab(tab().id, e.target.value)}
-            >
-              {tab().rawText}
-            </textarea>
+            <Toolbar tab={tab} removeTab={removeTab} tabToggleEditor={tabToggleEditor} />
+
+            <div class="content-and-editor">
+              <SolidMarkdown class="content" children={tab().grayMatter?.content} />
+
+              <div class="editor" aria-hidden={tab().editorHidden}>
+                <label for={`tab-md-input-${index}`} style="display: block">Content Editor (<a href="https://www.markdownguide.org/cheat-sheet/">markdown</a>)</label>
+                <textarea
+                  id={`tab-md-input-${index}`}
+                  rows="8"
+                  cols="50"
+                  oninput={(e) => updateTab(tab().id, e.target.value)}
+                >
+                  {tab().rawText}
+                </textarea>
+              </div>
+            </div>
           </div>
         }</Index>
       </div>
