@@ -5,7 +5,7 @@ import matter from 'gray-matter'
 import defaultTabData from './default-tab-data.md?raw'
 import { Toolbar } from './Toolbar'
 
-const silentMatter = (rawText: string) => {
+export const silentMatter = (rawText: string) => {
   let grayMatter = null
 
   try {

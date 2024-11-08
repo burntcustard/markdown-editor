@@ -1,5 +1,21 @@
+import { Accessor } from "solid-js";
+import { silentMatter } from "./Tabs";
 
-export const Toolbar = ({ tab, removeTab, tabToggleEditor }) => {
+// TODO: Sort out types
+export const Toolbar = ({
+  tab,
+  removeTab,
+  tabToggleEditor,
+}: {
+  tab: Accessor<{
+    id: number;
+    grayMatter: ReturnType<typeof silentMatter>;
+    rawText: string;
+    editorHidden: boolean;
+  }>;
+  removeTab: (id: number) => void;
+  tabToggleEditor: (id: number) => void;
+}) => {
   const handleDeleteClick = () => {
     removeTab(tab().id)
   }
