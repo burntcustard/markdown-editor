@@ -1,7 +1,7 @@
 :root {
   font-family: "Faculty Glyphic", sans-serif;
-  line-height: 1.5;
-  font-size: 18px;
+  line-height: 1.4;
+  font-size: 16px;
 }
 
 .sr-only {
@@ -26,7 +26,7 @@ button {
 }
 
 textarea {
-  font-size: 15px;
+  font-size: 14px;
   flex-grow: 1;
   height: auto;
   background: #100;
@@ -86,7 +86,7 @@ textarea {
   height: 0;
   display: flex;
   flex-direction: column;
-  border: 3px solid #db5;
+  border: 2px solid #db5;
   background: #210;
   flex-grow: 1;
 }
@@ -130,8 +130,8 @@ textarea {
   display: flex;
 
   button {
-    border: 3px solid transparent;
-    font-size: 18px;
+    border: 2px solid transparent;
+    font-size: 16px;
     transition: background .1s;
 
     &:hover {
@@ -148,33 +148,33 @@ textarea {
       margin: 3px 4px;
     }
   }
-}
 
-button[role="tab"] {
-  padding-block: 6px;
-  padding-inline: 12px;
-  margin-inline-start: -3px;
-  border-block-end: unset;
+  [role="tab"] {
+    padding-block: 6px;
+    padding-inline: 12px;
+    margin-inline-start: -2px;
+    border-block-end: unset;
 
-  &:first-child {
-    margin-inline-start: 0;
-  }
+    &:first-child {
+      margin-inline-start: 0;
+    }
 
-  &[aria-selected="true"] {
-    border-color: #db5;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    background: #210;
-    position: relative;
-
-    &:after {
-      content: '';
-      position: absolute;
-      height: 3px;
-      left: 0;
-      right: 0;
-      bottom: -3px;
+    &[aria-selected="true"] {
+      border-color: #db5;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
       background: #210;
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        left: 0;
+        right: 0;
+        bottom: -2px;
+        background: #210;
+      }
     }
   }
 }
