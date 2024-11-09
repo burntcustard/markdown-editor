@@ -141,21 +141,22 @@ export const Tabs = () => {
               <SolidMarkdown class="content" children={tab().grayMatter?.content} />
 
               <button onclick={() => tabToggleEditor(tab().id)} class="toggle-editor">
-                - - - {tab().editorHidden ? 'Show' : 'Hide'} Editor - - -
+                - - - {tab().editorHidden ? 'Show' : 'Hide'} <span id="editor-label">Editor</span> - - -
               </button>
 
               <div class="editor" aria-hidden={tab().editorHidden}>
-                <Toolbar tab={tab} removeTab={removeTab} index={index} />
+                {/* <Toolbar tab={tab} removeTab={removeTab} index={index} /> */}
 
-                <label for={`tab-md-input-${index}`}>
+                {/* <label for={`tab-md-input-${index}`}>
                   Content Editor (<a href="https://www.markdownguide.org/cheat-sheet/">markdown</a>)
-                </label>
+                </label> */}
                 <textarea
                   id={`tab-md-input-${index}`}
                   rows="1"
                   cols="50"
                   oninput={(e) => updateTab(tab().id, e.target.value)}
                   ref={editorTextareaRef}
+                  aria-labelledby="editor-label"
                 >
                   {tab().rawText}
                 </textarea>

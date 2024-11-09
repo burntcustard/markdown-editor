@@ -14,8 +14,8 @@
 
 body {
   margin: 0;
-  background: #100;
-  color: #fef;
+  background: #123;
+  color: #fff;
   height: 100dvh;
 }
 
@@ -28,14 +28,9 @@ button {
 textarea {
   font-size: 14px;
   flex-grow: 1;
-  height: auto;
-  background: #100;
+  background: #123;
   color: #eee;
-  border: 3px solid;
-  border-inline-color: #fff6;
-  border-block-start-color: #fff7;
-  border-block-end-color: #fff5;
-  transition: border-color .2s;
+  border: none;
 
   &:focus-visible {
     outline: none;
@@ -61,41 +56,37 @@ textarea {
   }
 }
 
+.content,
+textarea {
+  padding: 16px;
+}
+
 .toggle-editor {
-  margin-right: -3px;
-  border: 3px solid;
-  border-top-color: #fff7;
-  border-right-color: #fff6;
-  border-left-color: #fff6;
-  border-bottom-color: #fff5;
+  border: unset;
+  border-left: 2px solid #fff6;
   writing-mode: sideways-lr;
-  margin-top: 17px;
-  margin-bottom: 17px;
-  font-size: 14px;
-  padding-block: 4px;
 }
 
 .tabs {
-  margin-inline: 12px;
   display: flex;
   flex-direction: column;
-  padding-bottom: 16px;
+  padding: 8px;
 }
 
 .panel-wrapper {
   height: 0;
   display: flex;
   flex-direction: column;
-  border: 2px solid #db5;
-  background: #210;
+  border: 4px solid #c94;
+  border-top: 4px solid #eb4;
+  border-left: 4px solid #eb4;
+  background: #345;
   flex-grow: 1;
 }
 
 .editor {
   display: flex;
-  gap: 8px;
   flex-direction: column;
-  padding: 16px;
 
   label {
     font-size: 14px;
@@ -114,8 +105,8 @@ textarea {
 }
 
 .content {
+  border: 4px solid #123;
   overflow-y: auto;
-  padding: 16px;
 
   & > *:first-child {
     margin-top: 0;
@@ -128,16 +119,25 @@ textarea {
 
 [role="tablist"] {
   display: flex;
+  gap: 6px;
 
   button {
-    border: 2px solid transparent;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    font-family: inherit;
+    font-weight: 600;
+    border: 4px solid transparent;
     font-size: 16px;
-    transition: background .1s;
+    transition: color .2s, background .2s, border .2s;
+    color: #bbc;
 
-    &:hover {
-      background: #210;
+    /* &:hover {
       border-color: #db54;
-    }
+      color: #eef;
+      background: #456;
+      border-top: 4px solid #777;
+      border-right: 4px solid #345;
+    } */
 
     &.add {
       width: 30px;
@@ -150,30 +150,57 @@ textarea {
   }
 
   [role="tab"] {
-    padding-block: 6px;
+    position: relative;
+    padding-block: 4px;
     padding-inline: 12px;
-    margin-inline-start: -2px;
-    border-block-end: unset;
+    margin-bottom: -4px;
+    clip-path: polygon(-10% -10%, 110% -10%, 110% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), 100% 100%, 0 100%);
 
-    &:first-child {
-      margin-inline-start: 0;
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      width: 8px;
+      height: 8px;
+      border-radius: calc(1px * infinity);
+      opacity: 0;
+    }
+
+    &:before {
+      left: -6px;
+    }
+
+    &:after {
+      right: -6px;
+    }
+
+    &:hover {
+      color: #fff;
+      background: #345;
+      border-top-color: #456;
+      border-left-color: #456;
+      border-right-color: #234;
     }
 
     &[aria-selected="true"] {
-      border-color: #db5;
-      border-top-left-radius: 2px;
-      border-top-right-radius: 2px;
-      background: #210;
-      position: relative;
+      z-index: 1;
+      border-color: #c94;
+      background: #c94;
+      border-top: 4px solid #eb4;
+      border-left: 4px solid #eb4;
+      border-right: 4px solid #842;
+      border-bottom: 4px solid #c94;
+      color: #521;
 
-      &:after {
-        content: '';
-        position: absolute;
-        height: 2px;
-        left: 0;
-        right: 0;
-        bottom: -2px;
-        background: #210;
+      &:before, &:after {
+        background: #842;
+        border: 4px solid #c94;
+        opacity: 1;
+      }
+
+      &:first-child {
+        /* border-bottom: 4px solid #eb4; */
+        /* box-shadow: 0 0 0 4px #f00; */
       }
     }
   }
