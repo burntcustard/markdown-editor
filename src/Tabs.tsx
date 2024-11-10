@@ -79,7 +79,7 @@ export const Tabs = () => {
     localStorage.setItem('selectedTabIndex', selectedTabIndex.toString())
   }, { defer: true }))
 
-  const handleFileChange = async (event: { target: { files: any } }) => {
+  const handleFileUpload = async (event: { target: { files: any } }) => {
     for (const file of event.target.files) {
       // TODO: Don't add files that are identical to existing ones - show a warning message instead.
       addTab(await file.text())
@@ -96,16 +96,6 @@ export const Tabs = () => {
 
   return (
     <div class="tabs">
-      <div>
-        <input
-          type="file"
-          id="upload-md"
-          name="upload-md"
-          accept=".md"
-          onchange={handleFileChange}
-        />
-      </div>
-
       <div role="tablist" aria-label="Tabs">
         <Index each={tabStore}>{(tab, index) =>
           <button
@@ -156,7 +146,7 @@ export const Tabs = () => {
               </div>
 
               <div class="editor" aria-hidden={tab().editorHidden}>
-                <Toolbar tab={tab} removeTab={removeTab} index={index} />
+                <Toolbar tab={tab} removeTab={removeTab} index={index} handleFileUpload={handleFileUpload} />
 
                 <textarea
                   id={`tab-md-input-${index}`}

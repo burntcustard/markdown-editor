@@ -66,6 +66,7 @@ textarea {
   font-family: "Fira Mono";
   color: #ccc;
   font-size: 14px;
+  white-space: nowrap;
   transition: color .2s, background .2s, border-color .2s;
 
   button {
@@ -93,7 +94,7 @@ textarea {
 
 .panel-wrapper {
   z-index: 1;
-  height: 0;
+  height: 200px;
   display: flex;
   flex-direction: column;
   border: var(--border-md) solid #c94;
@@ -119,11 +120,11 @@ textarea {
   border: calc(var(--border-md) * 1.5) solid #123;
   overflow-y: auto;
 
-  & > *:first-child {
+  > *:first-child {
     margin-top: 0;
   }
 
-  & > *:last-child {
+  > *:last-child {
     margin-bottom: 0;
   }
 }
@@ -215,21 +216,40 @@ textarea {
 }
 
 .toolbar {
+  display: grid;
+  grid-template-rows: auto 0fr;
   padding-block: calc(var(--border-md) * 1.5);
   margin-inline: 16px;
-  display: flex;
-  gap: 4px;
   pointer-events: none;
   border-top: 2px solid transparent;
   border-bottom: 2px solid #234;
-  transition: border-color .2s;
+  transition: border-color .2s, grid-template-rows .5s;
 
-  & > * {
+  &:has(.import-modal[aria-hidden="false"]) {
+    grid-template-rows: auto 1fr;
+  }
+
+  > * {
     pointer-events: all;
   }
 
-  button {
-    display: grid;
+  .buttons {
+    display: flex;
+    gap: 4px;
+  }
+
+  .import-modal {
+    min-height: 0;
+    overflow: clip;
+
+    > * {
+      margin-top: calc(var(--border-md) * 1.5);
+    }
+  }
+
+  button,
+  input::file-selector-button {
+    display: inline-grid;
     place-items: center;
     background: #234;
     border: var(--border-sm) solid;
@@ -245,35 +265,37 @@ textarea {
       text-transform: uppercase;
       padding-inline: .5rem;
     }
+  }
+
+  button:hover,
+  input::file-selector-button:hover {
+    background: #345;
+    border-top-color: #456;
+    border-right-color: #234;
+    border-bottom-color: #234;
+    border-left-color: #456;
+    color: #fff;
+  }
+
+  button:active,
+  input::file-selector-button:active {
+    border-color: #345;
+  }
+
+  button.delete {
+    background: #700;
+    border-color: #921;
 
     &:hover {
-      background: #345;
-      border-top-color: #456;
-      border-right-color: #234;
-      border-bottom-color: #234;
-      border-left-color: #456;
-      color: #fff;
+      background: #811;
+      border-top-color: #a22;
+      border-right-color: #600;
+      border-bottom-color: #600;
+      border-left-color: #a22;
     }
 
     &:active {
-      border-color: #345;
-    }
-
-    &.delete {
-      background: #700;
-      border-color: #921;
-
-      &:hover {
-        background: #811;
-        border-top-color: #a22;
-        border-right-color: #600;
-        border-bottom-color: #600;
-        border-left-color: #a22;
-      }
-
-      &:active {
-        border-color: #811;
-      }
+      border-color: #811;
     }
   }
 
