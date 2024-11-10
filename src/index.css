@@ -32,20 +32,6 @@ textarea {
   padding: 16px;
 }
 
-textarea {
-  background: unset;
-  font-family: "Fira Mono", monospace;
-  font-size: 14px;
-  flex-grow: 1;
-  color: #eee;
-  border: none;
-
-  &:focus-visible {
-    outline: none;
-    border-color: #db5;
-  }
-}
-
 .content-and-editor {
   height: 100%;
   flex-grow: 1;
@@ -116,17 +102,6 @@ textarea {
   border-radius: var(--border-md);
   background: #345;
   flex-grow: 1;
-}
-
-.editor {
-  background: #123;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-
-  label {
-    font-size: 14px;
-  }
 }
 
 .tab-content {
@@ -211,7 +186,7 @@ textarea {
       border-top: var(--border-md) solid #eb4;
       border-left: var(--border-md) solid #eb4;
       border-right: var(--border-md) solid #a62;
-      color: #521;
+      color: #310;
       border-bottom: var(--border-md) solid #a62;
       transition: none;
 
@@ -224,15 +199,30 @@ textarea {
   }
 }
 
+.editor {
+  background: #123;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 14px;
+  }
+
+  &:has(textarea:focus-visible) .toolbar {
+    border-bottom-color: #345;
+  }
+}
+
 .toolbar {
   padding-block: calc(var(--border-md) * 1.5);
   margin-inline: 16px;
   display: flex;
   gap: 4px;
   pointer-events: none;
-
   border-top: 2px solid transparent;
   border-bottom: 2px solid #234;
+  transition: border-color .2s;
 
   & > * {
     pointer-events: all;
@@ -291,5 +281,19 @@ textarea {
   .undo, .redo {
     font-size: 20px;
     aspect-ratio: 1;
+  }
+}
+
+textarea {
+  background: unset;
+  font-family: "Fira Mono", monospace;
+  font-size: 14px;
+  flex-grow: 1;
+  color: #eee;
+  border: none;
+
+  &:focus-visible {
+    outline: none;
+    border-color: #db5;
   }
 }
