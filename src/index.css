@@ -243,7 +243,6 @@ textarea {
 
     &.text {
       text-transform: uppercase;
-      padding-top: .2em;
       padding-inline: .5rem;
     }
 
