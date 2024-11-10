@@ -10,7 +10,7 @@
   position: absolute;
   width: 1px;
   height: 1px;
-  overflow: hidden;
+  overflow: clip;
   clip-path: inset(50%);
 }
 
@@ -60,7 +60,11 @@ textarea {
   }
 
   a {
-    color: #49f;
+    color: #0bf;
+
+    &:hover {
+      color: #0cf;
+    }
   }
 }
 
@@ -242,14 +246,15 @@ textarea {
     border-color: #345;
     border-radius: var(--border-sm);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     min-height: 2rem;
     color: #ccc;
     transition: background .3s, border-color .3s, color .3s;
 
     &.text {
       text-transform: uppercase;
-      padding-top: .1em;
+      padding-top: .2em;
+      padding-inline: .5rem;
     }
 
     &:hover {
@@ -286,9 +291,5 @@ textarea {
   .undo, .redo {
     font-size: 20px;
     aspect-ratio: 1;
-  }
-
-  button:not(.undo, .redo) {
-    padding-inline: .5rem;
   }
 }

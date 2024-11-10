@@ -1,5 +1,6 @@
-import { Accessor, onMount } from "solid-js";
-import { silentMatter } from "./Tabs";
+import { Accessor, onMount } from "solid-js"
+import { silentMatter } from "./Tabs"
+import IconUndo from "./icon-undo"
 
 // TODO: Sort out types
 export const Toolbar = ({
@@ -59,8 +60,12 @@ export const Toolbar = ({
 
   return (
     <div class="toolbar">
-      <button class="undo" onPointerDown={handleUndoPointerDown} onPointerUp={handleUndoPointerUp}>↶<span class="sr-only">Undo</span></button>
-      <button class="redo" onPointerDown={handleRedoPointerDown} onPointerUp={handleRedoPointerUp}>↷<span class="sr-only">Redo</span></button>
+      <button class="undo" onPointerDown={handleUndoPointerDown} onPointerUp={handleUndoPointerUp}>
+        <IconUndo width="14px" height="14px"/><span class="sr-only">Undo</span>
+      </button>
+      <button class="redo" onPointerDown={handleRedoPointerDown} onPointerUp={handleRedoPointerUp}>
+        <IconUndo width="14px" height="14px" style="scale: -1 1"/><span class="sr-only">Redo</span>
+      </button>
       <button class="import text" onClick={handleImportClick}>Import</button>
       <button class="export text" onClick={handleExportClick}>Export</button>
       <button class="delete text" onClick={handleDeleteClick}>Delete</button>
