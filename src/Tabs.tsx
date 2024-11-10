@@ -121,9 +121,10 @@ export const Tabs = () => {
         }</Index>
 
         <button onClick={handleAddTabButtonClick} class="add">
-          <svg width="16" height="16" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" stroke="currentcolor">
+          <svg width="16" height="16" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" stroke="currentcolor" aria-hidden="true">
             <path d="M1 4 H7 M4 1 V7"/>
           </svg>
+          <span class="sr-only">New tab</span>
         </button>
       </div>
 
@@ -132,7 +133,7 @@ export const Tabs = () => {
           <div
             id={`panel-${index}`}
             role="tabpanel"
-            tabindex="0"
+            tabindex="-1"
             aria-labelledby={`tab-button-${index}`}
             aria-hidden={selectedTabIndex() === index ? undefined : true}
             class="tab-content"
@@ -140,16 +141,23 @@ export const Tabs = () => {
             <div class="content-and-editor">
               <SolidMarkdown class="content" children={tab().grayMatter?.content} />
 
-              <button onclick={() => tabToggleEditor(tab().id)} class="toggle-editor">
-                - - - {tab().editorHidden ? 'Show' : 'Hide'} <span id="editor-label">Editor</span> - - -
-              </button>
+              <div class="editor-toggler">
+                <span aria-hidden="true">---&nbsp;</span>
+
+                <button onclick={() => tabToggleEditor(tab().id)} aria-labelledby="show-hide-editor textarea-label"></button>
+
+                <span id="show-hide-editor">{tab().editorHidden ? 'Show' : 'Hide'}&nbsp;</span>
+
+                <label for={`tab-md-input-${index}`} id="textarea-label">
+                  Editor
+                </label>
+
+                <span aria-hidden="true">&nbsp;---</span>
+              </div>
 
               <div class="editor" aria-hidden={tab().editorHidden}>
-                {/* <Toolbar tab={tab} removeTab={removeTab} index={index} /> */}
+                <Toolbar tab={tab} removeTab={removeTab} index={index} />
 
-                {/* <label for={`tab-md-input-${index}`}>
-                  Content Editor (<a href="https://www.markdownguide.org/cheat-sheet/">markdown</a>)
-                </label> */}
                 <textarea
                   id={`tab-md-input-${index}`}
                   rows="1"

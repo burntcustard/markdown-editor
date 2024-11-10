@@ -32,6 +32,14 @@ export const Toolbar = ({
     document.execCommand('redo')
   }
 
+  const handleUndoPointerUp = () => {
+    textareaElement?.focus()
+  }
+
+  const handleRedoPointerUp = () => {
+    textareaElement?.focus()
+  }
+
   const handleDeleteClick = () => {
     removeTab(tab().id)
   }
@@ -51,11 +59,11 @@ export const Toolbar = ({
 
   return (
     <div class="toolbar">
-      <button class="undo" onPointerDown={handleUndoPointerDown} onPointerUp={() => textareaElement?.focus()}>↶<span class="sr-only">Undo</span></button>
-      <button class="redo" onPointerDown={handleRedoPointerDown} onPointerUp={() => textareaElement?.focus()}>↷<span class="sr-only">Redo</span></button>
-      <button class="import" onClick={handleImportClick}>Import</button>
-      <button class="export" onClick={handleExportClick}>Export</button>
-      <button class="delete" onClick={handleDeleteClick}>Delete</button>
+      <button class="undo" onPointerDown={handleUndoPointerDown} onPointerUp={handleUndoPointerUp}>↶<span class="sr-only">Undo</span></button>
+      <button class="redo" onPointerDown={handleRedoPointerDown} onPointerUp={handleRedoPointerUp}>↷<span class="sr-only">Redo</span></button>
+      <button class="import text" onClick={handleImportClick}>Import</button>
+      <button class="export text" onClick={handleExportClick}>Export</button>
+      <button class="delete text" onClick={handleDeleteClick}>Delete</button>
     </div>
   )
 }
