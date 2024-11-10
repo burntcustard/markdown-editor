@@ -219,25 +219,32 @@ textarea {
     font-size: 14px;
   }
 
-  &:has(textarea:focus-visible) .toolbar {
-    border-bottom-color: #345;
+  &:has(textarea:focus-visible) .toolbar:after {
+    background-color: #345;
   }
 }
 
 .toolbar {
   display: grid;
   grid-template-rows: auto 0fr;
-  padding-block: calc(var(--border-md) * 1.5);
+  padding-top: calc(var(--border-md) * 1.5);
   padding-inline: 16px;
   pointer-events: none;
   /* Different top and bottom borders because optical illusion */
   border-top: 2px solid transparent;
-  border-bottom: 3px solid #234;
   transition: border-color .2s, grid-template-rows .5s;
   overflow: auto;
 
   &:has(.import-modal[aria-hidden="false"]) {
     grid-template-rows: auto 1fr;
+  }
+
+  &:after {
+    content: '';
+    background: #234;
+    height: 3px;
+    width: 100%;
+    transition: background-color .2s;
   }
 
   > * {
@@ -247,6 +254,7 @@ textarea {
   .buttons {
     display: flex;
     gap: 4px;
+    margin-bottom: calc(var(--border-md) * 1.5);
   }
 
   .import-modal {
@@ -254,7 +262,7 @@ textarea {
     overflow: clip;
 
     > * {
-      margin-top: calc(var(--border-md) * 1.5);
+      margin-bottom: calc(var(--border-md) * 1.5);
     }
   }
 
