@@ -96,21 +96,23 @@ export const Tabs = () => {
 
   return (
     <div class="tabs">
-      <div role="tablist" aria-label="Tabs">
-        <Index each={tabStore}>{(tab, index) =>
-          <button
-            role="tab"
-            aria-selected={selectedTabIndex() === index}
-            aria-controls={`panel-${index}`}
-            id={`tab-button-${index}`}
-            tabindex={selectedTabIndex() === index ? -1 : 0}
-            onClick={() => setSelectedTabIndex(index)}
-          >
-            {tab().grayMatter?.data.title}
-            <div class="circle left"></div>
-            <div class="circle right"></div>
-          </button>
-        }</Index>
+      <div class="tablist-and-add">
+        <div role="tablist" aria-label="Tabs">
+          <Index each={tabStore}>{(tab, index) =>
+            <button
+              role="tab"
+              aria-selected={selectedTabIndex() === index}
+              aria-controls={`panel-${index}`}
+              id={`tab-button-${index}`}
+              tabindex={selectedTabIndex() === index ? -1 : 0}
+              onClick={() => setSelectedTabIndex(index)}
+            >
+              {tab().grayMatter?.data.title}
+              <div class="circle left"></div>
+              <div class="circle right"></div>
+            </button>
+          }</Index>
+        </div>
 
         <button onClick={handleAddTabButtonClick} class="add">
           <svg width="16" height="16" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" stroke="currentcolor" aria-hidden="true">

@@ -121,6 +121,10 @@ button {
 }
 
 [role="tablist"] {
+  display: contents;
+}
+
+.tablist-and-add {
   display: flex;
   gap: 6px;
 
