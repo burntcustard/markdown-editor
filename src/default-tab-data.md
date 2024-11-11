@@ -10,9 +10,13 @@ title: Reference Tab
 
 A short example paragraph. With a [hyperlink](https://burnt.io)!
 
-- A list!
-- With a few...
-- Items!
+- Unordered list
+- with bullet points!
+
+1. Ordered list
+2. with numbers!
+
+> Blockquote.
 
 <details open>
 <summary><h3>Expandable section</h3></summary>
@@ -22,8 +26,7 @@ Unfortunately, content in \<details> elements gets hidden when edited. To work a
 You cannot use regular markdown heading syntax (###), within \<summary\> elements, so you have to use HTML tags like \<h3> instead.
 </details>
 
-1. Another ordered list
-2. To test what it looks like?
+
 
 A paragraph *before* a horizontal rule (\<hr>)
 

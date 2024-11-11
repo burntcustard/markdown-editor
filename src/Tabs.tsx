@@ -1,10 +1,9 @@
 import { createEffect, createSignal, Index, on } from 'solid-js'
 import { createStore, produce } from 'solid-js/store'
-import { SolidMarkdown } from 'solid-markdown'
-import rehypeRaw from 'rehype-raw'
 import matter from 'gray-matter'
 import defaultTabData from './default-tab-data.md?raw'
 import { Toolbar } from './Toolbar'
+import Content from './Content'
 
 export const silentMatter = (rawText: string) => {
   let grayMatter = null
@@ -89,7 +88,7 @@ export const Tabs = () => {
   }
 
   const handleAddTabButtonClick = () => {
-    addTab('---\ntitle: New tab X\n---\n\n# Heading 1')
+    addTab(`---\ntitle: Tab ${tabStore.length + 1}\n---\n\n# Heading 1`)
     setSelectedTabIndex(tabStore.length - 1)
   }
 
@@ -132,11 +131,7 @@ export const Tabs = () => {
             class="tab-content"
           >
             <div class="content-and-editor">
-              <SolidMarkdown
-                class="content"
-                children={tab().grayMatter?.content}
-                rehypePlugins={[rehypeRaw] as any}
-              />
+              <Content children={tab().grayMatter?.content} />
 
               <div class="editor-toggler">
                 <span aria-hidden="true">---&nbsp;</span>
