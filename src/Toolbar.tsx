@@ -78,6 +78,7 @@ export const Toolbar = ({
 
       <div id="import-modal" class="import-modal" aria-hidden={!importExpanded()}>
         <input
+          tabIndex={importExpanded() ? undefined : -1}
           type="file"
           id="upload-md"
           name="upload-md"
