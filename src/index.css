@@ -34,6 +34,7 @@ textarea {
 }
 
 .content-and-editor {
+  position: relative;
   height: 100%;
   flex-grow: 1;
   overflow: clip;
@@ -172,7 +173,7 @@ textarea {
     padding-block: 4px;
     padding-inline: 12px;
 
-    &:before, &:after {
+    /* &:before, &:after {
       content: '';
       position: absolute;
       bottom: calc(var(--border-md) * -2.25);
@@ -180,6 +181,9 @@ textarea {
       height: 8px;
       border-radius: calc(1px * infinity);
       opacity: 0;
+      box-shadow: 0 0 0 4px #123;
+      clip-path: polygon(-100% 65%, 200% 65%, 200% 200%, -100% 200%);
+      clip-path: path('M 0 200 L 0,75 A 5,5 0,0,1 150,75 L 200 200 z');
     }
 
     &:before {
@@ -188,6 +192,42 @@ textarea {
 
     &:after {
       right: calc(var(--border-md) * -2);
+    } */
+
+    & .circle {
+      display: grid;
+      place-items: center;
+      position: absolute;
+      bottom: calc(var(--border-md) * -2.25);
+      width: 8px;
+      height: 8px;
+      border-radius: calc(1px * infinity);
+      background: #a62;
+      border: var(--border-md) solid #eb4;
+      opacity: 0;
+
+      &:before {
+        position: absolute;
+        content: '';
+        width: 26px;
+        height: 26px;
+        background: #123;
+        border-radius: calc(1px * infinity);
+        z-index: -1;
+        clip-path: polygon(0 18px, 100% 18px, 100% 100%, 0 100%);
+      }
+
+      &.left {
+        left: calc(var(--border-md) * -2.25);
+      }
+
+      &.right {
+        right: calc(var(--border-md) * -2.25);
+      }
+    }
+
+    &:first-child .circle.left:before {
+      clip-path: polygon(18px 18px, 100% 18px, 100% 100%, 18px 100%);
     }
 
     &[aria-selected="true"] {
@@ -200,9 +240,7 @@ textarea {
       border-bottom: var(--border-md) solid #a62;
       transition: none;
 
-      &:before, &:after {
-        background: #a62;
-        border: var(--border-md) solid #eb4;
+      & .circle {
         opacity: 1;
       }
     }
@@ -226,6 +264,7 @@ textarea {
 
 .toolbar {
   display: grid;
+  align-content: start; /* Fixes odd expandy buttons in Chrome */
   grid-template-rows: auto 0fr;
   padding-top: calc(var(--border-md) * 1.5);
   padding-inline: 16px;

@@ -107,6 +107,8 @@ export const Tabs = () => {
             onClick={() => setSelectedTabIndex(index)}
           >
             {tab().grayMatter?.data.title}
+            <div class="circle left"></div>
+            <div class="circle right"></div>
           </button>
         }</Index>
 
