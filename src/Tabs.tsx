@@ -1,6 +1,7 @@
 import { createEffect, createSignal, Index, on } from 'solid-js'
 import { createStore, produce } from 'solid-js/store'
 import { SolidMarkdown } from 'solid-markdown'
+import rehypeRaw from 'rehype-raw'
 import matter from 'gray-matter'
 import defaultTabData from './default-tab-data.md?raw'
 import { Toolbar } from './Toolbar'
@@ -131,7 +132,11 @@ export const Tabs = () => {
             class="tab-content"
           >
             <div class="content-and-editor">
-              <SolidMarkdown class="content" children={tab().grayMatter?.content} />
+              <SolidMarkdown
+                class="content"
+                children={tab().grayMatter?.content}
+                rehypePlugins={[rehypeRaw] as any}
+              />
 
               <div class="editor-toggler">
                 <span aria-hidden="true">---&nbsp;</span>

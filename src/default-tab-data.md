@@ -1,14 +1,32 @@
 ---
-title: Example tab
-description: This is an example tab with some description that may or may not be needed
+title: Reference Tab
 ---
 
-# This is a title? Or is it a h1?
+# Heading 1
 
-- here's
-- a
-- list
+## Heading 2
 
-**and some bold text**
+### Heading 3
 
-### this might be an h3?
+A short example paragraph. With a [hyperlink](https://burnt.io)!
+
+- A list!
+- With a few...
+- Items!
+
+<details open>
+<summary><h3>Expandable section</h3></summary>
+
+Unfortunately, content in \<details> elements gets hidden when edited. To work around that, include the open attribute when editing, and then remove it when finished.
+
+You cannot use regular markdown heading syntax (###), within \<summary\> elements, so you have to use HTML tags like \<h3> instead.
+</details>
+
+1. Another ordered list
+2. To test what it looks like?
+
+A paragraph *before* a horizontal rule (\<hr>)
+
+---
+
+A paragraph *after* a horizontal rule (\<hr>)

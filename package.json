@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
+    "rehype-raw": "^7.0.0",
     "solid-js": "^1.9.3",
     "solid-markdown": "^2.0.13"
   },
