@@ -173,27 +173,6 @@ textarea {
     padding-block: 4px;
     padding-inline: 12px;
 
-    /* &:before, &:after {
-      content: '';
-      position: absolute;
-      bottom: calc(var(--border-md) * -2.25);
-      width: 8px;
-      height: 8px;
-      border-radius: calc(1px * infinity);
-      opacity: 0;
-      box-shadow: 0 0 0 4px #123;
-      clip-path: polygon(-100% 65%, 200% 65%, 200% 200%, -100% 200%);
-      clip-path: path('M 0 200 L 0,75 A 5,5 0,0,1 150,75 L 200 200 z');
-    }
-
-    &:before {
-      left: calc(var(--border-md) * -2.25);
-    }
-
-    &:after {
-      right: calc(var(--border-md) * -2);
-    } */
-
     & .circle {
       display: grid;
       place-items: center;
