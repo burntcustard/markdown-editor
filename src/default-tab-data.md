@@ -23,10 +23,8 @@ A short example paragraph. With a [hyperlink](https://burnt.io)!
 
 Unfortunately, content in \<details> elements gets hidden when edited. To work around that, include the open attribute when editing, and then remove it when finished.
 
-You cannot use regular markdown heading syntax (###), within \<summary\> elements, so you have to use HTML tags like \<h3> instead.
+You cannot use regular markdown heading syntax (###), within \<summary\> elements, so you have to use HTML tags like h3 instead.
 </details>
-
-
 
 A paragraph *before* a horizontal rule (\<hr>)
 
