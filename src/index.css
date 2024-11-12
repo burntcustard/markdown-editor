@@ -85,6 +85,11 @@ button {
   white-space: nowrap;
   transition: color .2s, background .2s, border-color .2s;
 
+  > *:first-child,
+  > *:last-child {
+    margin-inline: .5rem;
+  }
+
   button {
     position: absolute;
     top: 0;
@@ -248,8 +253,7 @@ button {
   position: relative;
   /* Different top and bottom borders because optical illusion */
   border-top: 2px solid transparent;
-  padding-top: calc(var(--border-md) * 1.5);
-  min-height: calc(3px + 2rem + var(--border-md) * 1.5);
+  min-height: calc(3px + 2rem + var(--border-md) * 3);
 
   &:after {
     content: '';
@@ -268,17 +272,13 @@ button {
   display: grid;
   align-content: start; /* Fixes odd expandy buttons in Chrome */
   grid-template-rows: auto 0fr;
+  padding-top: calc(var(--border-md) * 1.5);
   padding-inline: 16px;
-  pointer-events: none;
   transition: border-color .2s, grid-template-rows .5s;
   overflow: auto;
 
   &:has(.import-modal[aria-hidden="false"]) {
     grid-template-rows: auto 1fr;
-  }
-
-  > * {
-    pointer-events: all;
   }
 
   .buttons {
