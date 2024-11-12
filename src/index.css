@@ -175,6 +175,7 @@ button {
   [role="tab"] {
     position: relative;
     padding-inline: 12px;
+    white-space: nowrap;
 
     & .circle {
       display: grid;
