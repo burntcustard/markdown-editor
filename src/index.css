@@ -352,6 +352,7 @@ textarea {
   flex-grow: 1;
   color: #eee;
   border: none;
+  resize: none;
 
   &:focus-visible {
     outline: none;
