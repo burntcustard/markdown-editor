@@ -228,8 +228,28 @@ button {
     font-size: 14px;
   }
 
-  &:has(textarea:focus-visible) .toolbar:after {
+  &:has(textarea:focus-visible) .toolbar-wrapper:after {
     background-color: #345;
+  }
+}
+
+.toolbar-wrapper {
+  position: relative;
+  /* Different top and bottom borders because optical illusion */
+  border-top: 2px solid transparent;
+  padding-top: calc(var(--border-md) * 1.5);
+  min-height: calc(3px + 2rem + var(--border-md) * 1.5);
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #234;
+    height: 3px;
+    transition: background-color .2s;
+    margin-inline: 16px;
   }
 }
 
@@ -237,24 +257,13 @@ button {
   display: grid;
   align-content: start; /* Fixes odd expandy buttons in Chrome */
   grid-template-rows: auto 0fr;
-  padding-top: calc(var(--border-md) * 1.5);
   padding-inline: 16px;
   pointer-events: none;
-  /* Different top and bottom borders because optical illusion */
-  border-top: 2px solid transparent;
   transition: border-color .2s, grid-template-rows .5s;
   overflow: auto;
 
   &:has(.import-modal[aria-hidden="false"]) {
     grid-template-rows: auto 1fr;
-  }
-
-  &:after {
-    content: '';
-    background: #234;
-    height: 3px;
-    width: 100%;
-    transition: background-color .2s;
   }
 
   > * {
@@ -346,6 +355,5 @@ textarea {
 
   &:focus-visible {
     outline: none;
-    border-color: #db5;
   }
 }

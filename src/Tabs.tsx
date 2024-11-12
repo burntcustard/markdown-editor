@@ -152,7 +152,9 @@ export const Tabs = () => {
               </div>
 
               <div class="editor" aria-hidden={tab().editorHidden}>
-                <Toolbar tab={tab} removeTab={removeTab} index={index} handleFileUpload={handleFileUpload} />
+                <div class="toolbar-wrapper">
+                  <Toolbar tab={tab} removeTab={removeTab} index={index} handleFileUpload={handleFileUpload} />
+                </div>
 
                 <textarea
                   id={`tab-md-input-${index}`}
