@@ -162,7 +162,6 @@ export const Tabs = () => {
                   cols="50"
                   oninput={(e) => updateTab(tab().id, e.target.value)}
                   ref={editorTextareaRef}
-                  aria-labelledby="editor-label"
                 >
                   {tab().rawText}
                 </textarea>
