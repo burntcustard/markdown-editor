@@ -147,8 +147,8 @@ button {
     border: var(--border-md) solid transparent;
     border-top-left-radius: var(--border-md);
     border-top-right-radius: var(--border-md);
+    height: 2.5rem;
     font-family: inherit;
-    /* font-weight: 600; */
     font-weight: 400;
     -webkit-text-stroke: .02em;
     letter-spacing: .01em;
@@ -174,7 +174,6 @@ button {
 
   [role="tab"] {
     position: relative;
-    padding-block: 4px;
     padding-inline: 12px;
 
     & .circle {
