@@ -2,8 +2,8 @@ import { createEffect, createSignal, Index, lazy, on } from 'solid-js'
 import { createStore, produce } from 'solid-js/store'
 import matter from 'gray-matter'
 import defaultTabData from './default-tab-data.md?raw'
-const Toolbar = lazy(() => import('./Toolbar'));
-const Content = lazy(() => import('./Content'));
+const Toolbar = lazy(() => import('./Toolbar'))
+const Content = lazy(() => import('./Content'))
 
 export const silentMatter = (rawText: string) => {
   let grayMatter = null
