@@ -66,10 +66,10 @@ export const Toolbar = ({
     <div class="toolbar">
       <div class="buttons">
         <button class="undo" onPointerDown={handleUndoPointerDown} onPointerUp={handleUndoPointerUp}>
-          <IconUndo width="14px" height="14px" aria-hidden="true"/><span class="sr-only">Undo</span>
+          <IconUndo width="13px" height="13px" aria-hidden="true"/><span class="sr-only">Undo</span>
         </button>
         <button class="redo" onPointerDown={handleRedoPointerDown} onPointerUp={handleRedoPointerUp}>
-          <IconUndo width="14px" height="14px" aria-hidden="true" style="scale: -1 1"/><span class="sr-only">Redo</span>
+          <IconUndo width="13px" height="13px" aria-hidden="true" style="scale: -1 1"/><span class="sr-only">Redo</span>
         </button>
         <button class="import text" onClick={handleImportClick} aria-controls="import-modal" aria-expanded={importExpanded()}>Import</button>
         <button class="export text" onClick={handleExportClick}>Export</button>
