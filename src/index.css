@@ -180,31 +180,39 @@ button {
       display: grid;
       place-items: center;
       position: absolute;
-      bottom: calc(var(--border-md) * -2.25);
-      width: 8px;
-      height: 8px;
-      border-radius: calc(1px * infinity);
-      background: #a62;
-      border: var(--border-md) solid #eb4;
+      bottom: calc(var(--border-md) * -.5);
       opacity: 0;
 
-      &:before {
-        position: absolute;
+      &:before,
+      &:after {
         content: '';
+        grid-area: 1 / 1;
+        border-radius: 50%;
+      }
+
+      &:before {
         width: 26px;
         height: 26px;
         background: #123;
-        border-radius: calc(1px * infinity);
-        z-index: -1;
         clip-path: polygon(0 17px, 100% 17px, 100% 100%, 0 100%);
       }
 
+      &:after {
+        width: 8px;
+        height: 8px;
+        background: #a62;
+        border: var(--border-md) solid #eb4;
+        z-index: 1;
+      }
+
       &.left {
-        left: calc(var(--border-md) * -2.25);
+        left: calc(var(--border-md) * -.5);
+        translate: -50% 50%;
       }
 
       &.right {
-        right: calc(var(--border-md) * -2.25);
+        right: calc(var(--border-md) * -.5);
+        translate: 50% 50%;
       }
     }
 
