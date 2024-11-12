@@ -1,8 +1,4 @@
 .content {
-  padding: 16px;
-  border: var(--border-sm) solid #123;
-  overflow-y: auto;
-
   > *:first-child {
     margin-top: 0;
   }

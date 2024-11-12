@@ -1,9 +1,9 @@
-import { createEffect, createSignal, Index, on } from 'solid-js'
+import { createEffect, createSignal, Index, lazy, on } from 'solid-js'
 import { createStore, produce } from 'solid-js/store'
 import matter from 'gray-matter'
 import defaultTabData from './default-tab-data.md?raw'
-import { Toolbar } from './Toolbar'
-import Content from './Content'
+const Toolbar = lazy(() => import('./Toolbar'));
+const Content = lazy(() => import('./Content'));
 
 export const silentMatter = (rawText: string) => {
   let grayMatter = null
@@ -133,7 +133,9 @@ export const Tabs = () => {
             class="tab-content"
           >
             <div class="content-and-editor">
-              <Content children={tab().grayMatter?.content} />
+              <div class="content-wrapper">
+                <Content children={tab().grayMatter?.content} />
+              </div>
 
               <div class="editor-toggler">
                 <span aria-hidden="true">---&nbsp;</span>

@@ -55,6 +55,12 @@ button {
   }
 }
 
+.content-wrapper {
+  padding: 16px;
+  border: var(--border-sm) solid #123;
+  overflow-y: auto;
+}
+
 .editor-toggler {
   position: relative;
   background: #234;
