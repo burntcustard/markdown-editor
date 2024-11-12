@@ -79,16 +79,11 @@ button {
   rotate: 180deg;
   writing-mode: vertical-lr;
   text-align: center;
-  font-family: "Fira Mono";
+  font-family: "Fira Mono", monospace;
   color: #ccc;
   font-size: 14px;
   white-space: nowrap;
   transition: color .2s, background .2s, border-color .2s;
-
-  > *:first-child,
-  > *:last-child {
-    margin-inline: .5rem;
-  }
 
   button {
     position: absolute;

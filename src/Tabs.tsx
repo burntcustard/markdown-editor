@@ -138,7 +138,7 @@ export const Tabs = () => {
               </div>
 
               <div class="editor-toggler">
-                <span aria-hidden="true">---</span>
+                <span aria-hidden="true">---&nbsp;</span>
 
                 <button onclick={() => tabToggleEditor(tab().id)} aria-labelledby="show-hide-editor textarea-label"></button>
 
@@ -148,7 +148,7 @@ export const Tabs = () => {
                   Editor
                 </label>
 
-                <span aria-hidden="true">---</span>
+                <span aria-hidden="true">&nbsp;---</span>
               </div>
 
               <div class="editor" aria-hidden={tab().editorHidden}>
