@@ -39,8 +39,6 @@ export const Tabs = () => {
   }
 
   const updateTab = (id: number, rawText: string) => {
-    console.log('tab content updated?')
-    console.log('id', id);
     setTabStore(
       tabData => tabData.id === id,
       produce((tabData) => {
