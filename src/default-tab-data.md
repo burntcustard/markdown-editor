@@ -22,7 +22,7 @@ A short example paragraph. With a [hyperlink](https://burnt.io)!
 > Blockquote.
 
 <details open>
-<summary>### Expandable section</summary>
+<summary><h3>Expandable section</h3></summary>
 
 Content in \<details\> elements is hidden when editing. To work around that, include the open attribute when editing, and then remove it when finished.
 
