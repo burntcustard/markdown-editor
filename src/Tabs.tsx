@@ -134,7 +134,7 @@ export const Tabs = () => {
           >
             <div class="content-and-editor">
               <div class="content-wrapper">
-                <Content children={tab().grayMatter?.content} />
+                <Content value={tab().grayMatter?.content} />
               </div>
 
               <div class="editor-toggler">

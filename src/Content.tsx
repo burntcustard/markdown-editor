@@ -1,18 +1,22 @@
-import { Component } from 'solid-js'
-import { SolidMarkdown } from 'solid-markdown'
-import rehypeRaw from 'rehype-raw'
-import remarkGfm from 'remark-gfm'
+import { Component, createComputed, createSignal } from 'solid-js'
+import {micromark} from 'micromark'
+import {gfm, gfmHtml} from 'micromark-extension-gfm'
 import './Content.css'
 
-// The Content Component takes a string as it's children, rather than
-// JSX.Element, to match SolidMarkdown. Destructuring breaks SolidJS?
-const Content: Component<{ children?: string }> = (props) => (
-  <SolidMarkdown
-    class="content"
-    children={props?.children}
-    rehypePlugins={[rehypeRaw] as any}
-    remarkPlugins={[remarkGfm] as any}
-  />
-)
+const Content: Component<{value?: string}> = (props) => {
+  const [html, setHtml] = createSignal();
+
+  createComputed(() => {
+    setHtml(micromark(props.value ?? '', {
+      allowDangerousHtml: true,
+      extensions: [gfm()],
+      htmlExtensions: [gfmHtml()],
+    }))
+  })
+
+  return (
+    <div class="content" innerHTML={html() as string} />
+  )
+}
 
 export default Content
