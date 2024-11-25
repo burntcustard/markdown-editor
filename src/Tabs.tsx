@@ -8,11 +8,11 @@ function parseFrontMatter(markdown: string): Record<string, any> {
   const frontMatterObject: Record<string, any> = {}
 
   // Extract the front matter block
-  const frontMatterRegex = /---\n([\s\S]*?)\n---/
+  const frontMatterRegex = /^---[\s\S]*?\n---/
   const match = frontMatterRegex.exec(markdown)
 
   if (match) {
-    const frontMatterContent = match[1]
+    const frontMatterContent = match[0]
 
     // Parse the YAML into key-value pairs
     frontMatterContent.split('\n').forEach((line) => {
@@ -35,7 +35,6 @@ export const Tabs = () => {
 
   const [tabStore, setTabStore] = createStore<{
     id: number;
-    // grayMatter: ReturnType<typeof silentMatter>;
     matter: any;
     rawText: string;
     editorHidden: boolean;
@@ -46,7 +45,6 @@ export const Tabs = () => {
       produce((tabsData) => {
         tabsData.push({
           id: ++tabId,
-          // grayMatter: silentMatter(rawText),
           matter: parseFrontMatter(rawText),
           rawText,
           editorHidden: false
