@@ -1,5 +1,4 @@
 import { Accessor, createSignal, onMount } from "solid-js"
-import { silentMatter } from "./Tabs"
 import IconUndo from "./icon-undo"
 
 // TODO: Sort out types
@@ -11,7 +10,7 @@ export const Toolbar = ({
 }: {
   tab: Accessor<{
     id: number;
-    grayMatter: ReturnType<typeof silentMatter>;
+    matter: Record<string, any>;
     rawText: string;
     editorHidden: boolean;
   }>;
@@ -58,7 +57,7 @@ export const Toolbar = ({
     const blob = new Blob([tab().rawText], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
     a.setAttribute('href', url)
-    a.setAttribute('download', `${tab().grayMatter?.data.title ?? '_'}.md`)
+    a.setAttribute('download', `${tab().matter?.title ?? '_'}.md`)
     a.click()
   }
 

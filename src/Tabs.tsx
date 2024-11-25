@@ -1,20 +1,30 @@
 import { createEffect, createSignal, Index, lazy, on } from 'solid-js'
 import { createStore, produce } from 'solid-js/store'
-import matter from 'gray-matter'
 import defaultTabData from './default-tab-data.md?raw'
 const Toolbar = lazy(() => import('./Toolbar'))
 const Content = lazy(() => import('./Content'))
 
-export const silentMatter = (rawText: string) => {
-  let grayMatter = null
+function parseFrontMatter(markdown: string): Record<string, any> {
+  const frontMatterObject: Record<string, any> = {}
 
-  try {
-    grayMatter = matter(rawText)
-  } catch(error) {
-    console.warn('Unable to parse markdown, reason:', (error as Error).message)
+  // Extract the front matter block
+  const frontMatterRegex = /---\n([\s\S]*?)\n---/
+  const match = frontMatterRegex.exec(markdown)
+
+  if (match) {
+    const frontMatterContent = match[1]
+
+    // Parse the YAML into key-value pairs
+    frontMatterContent.split('\n').forEach((line) => {
+      const [key, value] = line.split(/:\s*/) // Split on the first colon followed by space
+
+      if (key && value !== undefined) {
+        frontMatterObject[key.trim()] = value.trim()
+      }
+    })
   }
 
-  return grayMatter
+  return frontMatterObject
 }
 
 export const Tabs = () => {
@@ -25,7 +35,8 @@ export const Tabs = () => {
 
   const [tabStore, setTabStore] = createStore<{
     id: number;
-    grayMatter: ReturnType<typeof silentMatter>;
+    // grayMatter: ReturnType<typeof silentMatter>;
+    matter: any;
     rawText: string;
     editorHidden: boolean;
   }[]>([])
@@ -33,7 +44,13 @@ export const Tabs = () => {
   const addTab = (rawText: string) => {
     setTabStore(
       produce((tabsData) => {
-        tabsData.push({ id: ++ tabId, grayMatter: silentMatter(rawText), rawText, editorHidden: false })
+        tabsData.push({
+          id: ++tabId,
+          // grayMatter: silentMatter(rawText),
+          matter: parseFrontMatter(rawText),
+          rawText,
+          editorHidden: false
+        })
       })
     )
   }
@@ -42,12 +59,8 @@ export const Tabs = () => {
     setTabStore(
       tabData => tabData.id === id,
       produce((tabData) => {
-        const parsedText = silentMatter(rawText)
-
-        if (parsedText) {
-          tabData.grayMatter = parsedText
-          tabData.rawText = rawText
-        }
+        tabData.matter = parseFrontMatter(rawText)
+        tabData.rawText = rawText
       })
     )
   }
@@ -107,7 +120,7 @@ export const Tabs = () => {
               tabindex={selectedTabIndex() === index ? -1 : 0}
               onClick={() => setSelectedTabIndex(index)}
             >
-              {tab().grayMatter?.data.title}
+              {tab().matter?.title}
               <div class="circle left"></div>
               <div class="circle right"></div>
             </button>
@@ -134,7 +147,7 @@ export const Tabs = () => {
           >
             <div class="content-and-editor">
               <div class="content-wrapper">
-                <Content value={tab().grayMatter?.content} />
+                <Content value={tab().rawText} />
               </div>
 
               <div class="editor-toggler">

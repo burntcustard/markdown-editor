@@ -1,6 +1,7 @@
 import { Component, createComputed, createSignal } from 'solid-js'
-import {micromark} from 'micromark'
-import {gfm, gfmHtml} from 'micromark-extension-gfm'
+import { micromark } from 'micromark'
+import { frontmatter, frontmatterHtml } from 'micromark-extension-frontmatter'
+import { gfm, gfmHtml } from 'micromark-extension-gfm'
 import './Content.css'
 
 const Content: Component<{value?: string}> = (props) => {
@@ -9,8 +10,8 @@ const Content: Component<{value?: string}> = (props) => {
   createComputed(() => {
     setHtml(micromark(props.value ?? '', {
       allowDangerousHtml: true,
-      extensions: [gfm()],
-      htmlExtensions: [gfmHtml()],
+      extensions: [frontmatter(), gfm()],
+      htmlExtensions: [frontmatterHtml(), gfmHtml()],
     }))
   })
 
