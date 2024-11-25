@@ -1,31 +1,9 @@
 import { createEffect, createSignal, Index, lazy, on } from 'solid-js'
 import { createStore, produce } from 'solid-js/store'
+import { parseFrontMatter } from './front-matter'
 import defaultTabData from './default-tab-data.md?raw'
 const Toolbar = lazy(() => import('./Toolbar'))
 const Content = lazy(() => import('./Content'))
-
-function parseFrontMatter(markdown: string): Record<string, any> {
-  const frontMatterObject: Record<string, any> = {}
-
-  // Extract the front matter block
-  const frontMatterRegex = /^---[\s\S]*?\n---/
-  const match = frontMatterRegex.exec(markdown)
-
-  if (match) {
-    const frontMatterContent = match[0]
-
-    // Parse the YAML into key-value pairs
-    frontMatterContent.split('\n').forEach((line) => {
-      const [key, value] = line.split(/:\s*/) // Split on the first colon followed by space
-
-      if (key && value !== undefined) {
-        frontMatterObject[key.trim()] = value.trim()
-      }
-    })
-  }
-
-  return frontMatterObject
-}
 
 export const Tabs = () => {
   const localSelectedTabIndex = localStorage.getItem('selectedTabIndex')

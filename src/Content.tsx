@@ -1,13 +1,8 @@
 import { Component, createComputed, createSignal } from 'solid-js'
 import { micromark } from 'micromark'
 import { gfm, gfmHtml } from 'micromark-extension-gfm'
+import { stripFrontMatter } from './front-matter'
 import './Content.css'
-
-const stripFrontMatter = (value: string): string => {
-  const frontMatterRegex = /^---[\s\S]*?\n---/
-
-  return value.replace(frontMatterRegex, '')
-}
 
 const Content: Component<{value?: string}> = (props) => {
   const [html, setHtml] = createSignal();
