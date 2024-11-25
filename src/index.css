@@ -177,6 +177,11 @@ button {
     padding-inline: 12px;
     white-space: nowrap;
 
+    /* Make cheatsheet tab at least x wide to prevent CLS when font loads */
+    &[data-title="Cheatsheet"] {
+      min-width: 7.65rem;
+    }
+
     & .circle {
       display: grid;
       place-items: center;

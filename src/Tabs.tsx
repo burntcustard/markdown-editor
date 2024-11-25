@@ -117,6 +117,7 @@ export const Tabs = () => {
               id={`tab-button-${index}`}
               tabindex={selectedTabIndex() === index ? -1 : 0}
               onClick={() => setSelectedTabIndex(index)}
+              data-title={tab().matter?.title}
             >
               {tab().matter?.title}
               <div class="circle left"></div>
