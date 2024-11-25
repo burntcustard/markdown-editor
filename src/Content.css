@@ -57,4 +57,13 @@
   ol, ul {
     padding-inline-start: 2em;
   }
+
+  ul:has(input[type="checkbox"]) {
+    list-style-type: none;
+
+    input {
+      /* Magic number to make checkboxes line up with li indicators with browser default styling */
+      margin-left: -1.5em;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 ---
-title: Reference Tab
+title: Cheatsheet
 ---
 
 # Heading 1
@@ -16,14 +16,17 @@ A short example paragraph. With a [hyperlink](https://burnt.io)!
 1. Ordered list
 2. with numbers!
 
+- [ ] A checkbox list
+- [x] with a checked item!
+
 > Blockquote.
 
 <details open>
-<summary><h3>Expandable section</h3></summary>
+<summary>### Expandable section</summary>
 
-Unfortunately, content in \<details> elements gets hidden when edited. To work around that, include the open attribute when editing, and then remove it when finished.
+Content in \<details\> elements is hidden when editing. To work around that, include the open attribute when editing, and then remove it when finished.
 
-You cannot use regular markdown heading syntax (###), within \<summary\> elements, so you have to use HTML tags like h3 instead.
+You cannot use regular markdown heading syntax (###), within \<summary\> elements, so you have to use HTML tags like \<h3\> instead.
 </details>
 
 A paragraph *before* a horizontal rule (\<hr>)
