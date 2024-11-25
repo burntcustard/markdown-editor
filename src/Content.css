@@ -51,11 +51,10 @@
   blockquote {
     border-inline-start: 4px solid color-mix(in hsl, currentColor 50%, transparent);
     margin-inline: 0;
-    padding-inline-start: 1em;
+    padding-inline-start: calc(2em - 4px);
   }
 
   ol, ul {
-    padding-inline-start: 0;
-    list-style-position: inside;
+    padding-inline-start: 2em;
   }
 }

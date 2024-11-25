@@ -4,10 +4,12 @@ import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
 import './Content.css'
 
-const Content: Component<{children?: string}> = ({ children }) => (
+// The Content Component takes a string as it's children, rather than
+// JSX.Element, to match SolidMarkdown. Destructuring breaks SolidJS?
+const Content: Component<{ children?: string }> = (props) => (
   <SolidMarkdown
     class="content"
-    children={children}
+    children={props?.children}
     rehypePlugins={[rehypeRaw] as any}
     remarkPlugins={[remarkGfm] as any}
   />
