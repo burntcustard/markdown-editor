@@ -151,7 +151,7 @@ button {
     font-family: inherit;
     font-weight: 400;
     -webkit-text-stroke: .02em;
-    letter-spacing: .01em;
+    letter-spacing: .02em;
     font-size: 16px;
     transition: color .2s, background .2s, border-color .2s;
     color: #bbc;
@@ -176,10 +176,11 @@ button {
     position: relative;
     padding-inline: 10px;
     white-space: nowrap;
+    text-align: center;
 
-    /* Make cheatsheet tab at least x wide to prevent CLS when font loads */
+    /* Make cheatsheet tab exactly x wide to prevent CLS when font loads */
     &[data-title="Cheatsheet"] {
-      min-width: 7.5rem;
+      width: 7.5rem;
     }
 
     & .circle {
