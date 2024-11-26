@@ -1,14 +1,17 @@
 ---
-title: Cheatsheet
+title: Cheat Sheet
+language: en-US
 ---
 
-# Markdown Cheatsheet
+# Markdown Cheat Sheet
 
 This editor supports the majority of **[GitHub Flavored Markdown (GFM)](https://github.github.com/gfm/)** via [micromark](https://github.com/micromark/micromark) and [micromark-extension-gfm](https://github.com/micromark/micromark-extension-gfm).
 
-It also supports raw [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML), although some elements may act unexpectedly or may not have styling.
+Raw [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) is supported, although some elements may act unexpectedly or may not be styled.
 
-Syntax examples:
+The `title` and `language` [YAML](https://yaml.org/) set the tab name and the language of the editor. A page refresh may be needed for spellcheckers to detect the updated [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang).
+
+---
 
 # Heading 1
 

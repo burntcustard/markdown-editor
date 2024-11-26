@@ -58,7 +58,7 @@ export const Tabs = () => {
     localStorage.setItem('tabsData', JSON.stringify(tabStore.map((tab) => tab.rawText)))
   }, { defer: true })
 
-  const defaultData = [ defaultTabData ]
+  const defaultData = [ defaultTabData.trimEnd() ]
   const localData = localStorage.getItem('tabsData')
   const startingData = (localData ? JSON.parse(localData) : defaultData)
 
@@ -152,6 +152,7 @@ export const Tabs = () => {
                   cols="50"
                   oninput={(e) => updateTab(tab().id, e.target.value)}
                   ref={editorTextareaRef}
+                  lang={tab().matter.language ?? 'en-US'}
                 >
                   {tab().rawText}
                 </textarea>
