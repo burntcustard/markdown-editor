@@ -4,20 +4,20 @@ import { gfm, gfmHtml } from 'micromark-extension-gfm'
 import { stripFrontMatter } from './front-matter'
 import './Content.css'
 
-const Content: Component<{value?: string}> = (props) => {
-  const [html, setHtml] = createSignal();
+const Content: Component<{ value?: string }> = (props) => {
+  const [html, setHtml] = createSignal()
 
   createComputed(() => {
-    setHtml(micromark(stripFrontMatter(props.value ?? ''), {
-      allowDangerousHtml: true,
-      extensions: [gfm()],
-      htmlExtensions: [gfmHtml()],
-    }))
+    setHtml(
+      micromark(stripFrontMatter(props.value ?? ''), {
+        allowDangerousHtml: true,
+        extensions: [gfm()],
+        htmlExtensions: [gfmHtml()]
+      })
+    )
   })
 
-  return (
-    <div class="content" innerHTML={html() as string} />
-  )
+  return <div class="content" innerHTML={html() as string} />
 }
 
 export default Content

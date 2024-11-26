@@ -81,7 +81,7 @@ export const Tabs = () => {
     setSelectedTabIndex(tabStore.length - 1)
   }
 
-  let editorTextareaRef: HTMLTextAreaElement | undefined;
+  let editorTextareaRef: HTMLTextAreaElement | undefined
 
   return (
     <div class="tabs">
