@@ -38,17 +38,26 @@ button {
 }
 
 .content-and-editor {
+  --max-content-width: calc(100cqw - 1.25rem - calc(var(--border-sm) * 2));
   position: relative;
   height: 100%;
   flex-grow: 1;
   overflow: clip;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 0 auto var(--max-content-width);
+  transition: .4s grid-template-columns;
 
-  transition: 1s grid-template-columns;
+  @media (width > 500px) {
+    grid-template-columns: 1fr auto 1fr;
+    transition: .8s grid-template-columns;
+  }
 
   &:has(.editor[aria-hidden="true"]) {
-    grid-template-columns: 1fr auto 0fr;
+    grid-template-columns: var(--max-content-width) auto 0;
+
+    @media (width > 500px) {
+      grid-template-columns: 1fr auto 0fr;
+    }
 
     & .toolbar {
       overflow: clip;
@@ -65,13 +74,22 @@ button {
 }
 
 .content-wrapper {
-  padding: 16px;
+  box-sizing: border-box;
   border: var(--border-sm) solid #123;
   overflow-y: auto;
+  min-width: var(--max-content-width);
+
+  @media (width > 500px) {
+    min-width: 0;
+  }
 }
 
 .editor-toggler {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
   background: #234;
   border-left: var(--border-sm) solid #345;
   border-right: var(--border-sm) solid #345;
@@ -125,6 +143,7 @@ button {
 }
 
 .tab-content {
+  container-type: inline-size;
   height: 100%;
   flex-grow: 1;
   display: flex;
@@ -248,7 +267,12 @@ button {
   background: #123;
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  z-index: 1;  /* Display on top of possible content scrollbars */
+  min-width: var(--max-content-width);
+
+  @media (width > 500px) {
+    min-width: 0;
+  }
 
   label {
     font-size: 14px;
@@ -281,11 +305,11 @@ button {
 .toolbar {
   display: grid;
   align-content: start; /* Fixes odd expandy buttons in Chrome */
-  grid-template-rows: auto 0fr;
   padding-top: calc(var(--border-md) * 1.5);
   padding-inline: 16px;
   transition: border-color .2s, grid-template-rows .5s;
   overflow: auto;
+  grid-template-rows: auto 0fr;
 
   &:has(.import-modal[aria-hidden="false"]) {
     grid-template-rows: auto 1fr;

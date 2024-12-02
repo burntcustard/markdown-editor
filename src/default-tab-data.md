@@ -39,7 +39,7 @@ Fenced Code Block
 <details open>
 <summary><h3>Expandable Section</h3></summary>
 
-Content in `<details>` elements is hidden when editing. To work around that, include the `open` attribute when editing, and then remove it when finished.
+Content in `<details>` elements is hidden when editing. As a workaround, include the `open` attribute when editing, and then remove it when finished.
 
-You cannot use regular markdown heading syntax (`###`) within `<summary>` elements, so you have to use HTML tags like `<h3>` instead.
+Markdown heading syntax (`###`) does not work within `<summary>` elements. Use HTML tags like `<h3>` instead.
 </details>

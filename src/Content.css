@@ -1,4 +1,6 @@
 .content {
+  margin: 16px;
+
   > *:first-child {
     margin-top: 0;
   }
