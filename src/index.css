@@ -38,13 +38,14 @@ button {
 }
 
 .content-and-editor {
-  --max-content-width: calc(100cqw - 1.25rem - calc(var(--border-sm) * 2));
+  --max-content-width: calc(100cqw - 1.75rem);
+  --toggle-editor-width: calc(1.75rem - .5px); /* Fix sub-pixel rendering of grid in Chrome */
   position: relative;
   height: 100%;
   flex-grow: 1;
   overflow: clip;
   display: grid;
-  grid-template-columns: 0 auto var(--max-content-width);
+  grid-template-columns: 0 auto 1fr;
   transition: .4s grid-template-columns;
 
   @media (width > 500px) {
@@ -53,7 +54,7 @@ button {
   }
 
   &:has(.editor[aria-hidden="true"]) {
-    grid-template-columns: var(--max-content-width) auto 0;
+    grid-template-columns: var(--max-content-width) auto 0fr;
 
     @media (width > 500px) {
       grid-template-columns: 1fr auto 0fr;
@@ -78,29 +79,27 @@ button {
   border: var(--border-sm) solid #123;
   overflow-y: auto;
   min-width: var(--max-content-width);
+  transition: min-width .4s;
 
   @media (width > 500px) {
     min-width: 0;
   }
 }
 
-.editor-toggler {
+.editor-toggle {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.25rem;
+  box-sizing: border-box;
   background: #234;
   border-left: var(--border-sm) solid #345;
   border-right: var(--border-sm) solid #345;
-  border-radius: var(--border-sm);
   rotate: 180deg;
   writing-mode: vertical-lr;
-  text-align: center;
   font-family: "Fira Mono", monospace;
   color: #ccc;
   font-size: 14px;
-  white-space: nowrap;
   transition: color .2s, background .2s, border-color .2s;
 
   button {
