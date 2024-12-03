@@ -15,11 +15,11 @@
     font-size: 85%;
     border-radius: 2px;
     background-color: #234;
+  }
 
-    pre & {
-      display: block;
-      padding: 1rem;
-    }
+  pre code {
+    display: block;
+    padding: 1rem;
   }
 
   details {
