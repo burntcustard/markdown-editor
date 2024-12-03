@@ -146,6 +146,7 @@ button {
 }
 
 .tabs {
+  grid-row: 2;
   padding-block: .5rem;
   padding-inline: 8px;
   display: flex;
