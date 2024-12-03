@@ -51,6 +51,12 @@ button {
       text-decoration-color: #0cf;
     }
   }
+
+  @media (display-mode: standalone) {
+    & {
+      display: none;
+    }
+  }
 }
 
 .content-and-editor {
@@ -236,7 +242,7 @@ button {
         width: 26px;
         height: 26px;
         background: #123;
-        clip-path: polygon(0 17px, 100% 17px, 100% 100%, 0 100%);
+        clip-path: polygon(0 16px, 100% 16px, 100% 100%, 0 100%);
       }
 
       &:after {
@@ -259,7 +265,7 @@ button {
     }
 
     &:first-child .circle.left:before {
-      clip-path: polygon(17px 17px, 100% 17px, 100% 100%, 17px 100%);
+      clip-path: polygon(16px 16px, 100% 16px, 100% 100%, 16px 100%);
     }
 
     &[aria-selected="true"] {

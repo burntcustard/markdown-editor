@@ -15,8 +15,8 @@ export default defineConfig({
     },
 
     manifest: {
-      name: 'burnts Markdown Editor',
-      short_name: 'Markdown Editor',
+      name: 'burnt\'s Markdown Editor',
+      short_name: '.md Edit',
       description: 'A little markdown (.md) editing web app originally created hold TTRPG random encounter info',
       theme_color: '#ffffff',
     },
