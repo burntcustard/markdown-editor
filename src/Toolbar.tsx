@@ -64,15 +64,15 @@ export const Toolbar = ({
   return (
     <div class="toolbar">
       <div class="buttons">
-        <button class="undo" onPointerDown={handleUndoPointerDown} onPointerUp={handleUndoPointerUp}>
+        <button class="basic-button undo" onPointerDown={handleUndoPointerDown} onPointerUp={handleUndoPointerUp}>
           <IconUndo width="13px" height="13px" aria-hidden="true"/><span class="sr-only">Undo</span>
         </button>
-        <button class="redo" onPointerDown={handleRedoPointerDown} onPointerUp={handleRedoPointerUp}>
+        <button class="basic-button redo" onPointerDown={handleRedoPointerDown} onPointerUp={handleRedoPointerUp}>
           <IconUndo width="13px" height="13px" aria-hidden="true" style="scale: -1 1"/><span class="sr-only">Redo</span>
         </button>
-        <button class="import text" onClick={handleImportClick} aria-controls="import-modal" aria-expanded={importExpanded()}>Import</button>
-        <button class="export text" onClick={handleExportClick}>Export</button>
-        <button class="delete text" onClick={handleDeleteClick}>Delete</button>
+        <button class="basic-button import text" onClick={handleImportClick} aria-controls="import-modal" aria-expanded={importExpanded()}>Import</button>
+        <button class="basic-button export text" onClick={handleExportClick}>Export</button>
+        <button class="basic-button delete text" onClick={handleDeleteClick}>Delete</button>
       </div>
 
       <div id="import-modal" class="import-modal" aria-hidden={!importExpanded()}>

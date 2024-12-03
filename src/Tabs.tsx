@@ -76,8 +76,13 @@ export const Tabs = () => {
     }
   }
 
+  const handleRestoreCheatSheetButtonClick = () => {
+    addTab(defaultTabData.trimEnd())
+    setSelectedTabIndex(tabStore.length - 1)
+  }
+
   const handleAddTabButtonClick = () => {
-    addTab(`---\ntitle: Tab ${tabStore.length + 1}\n---\n\n# Heading 1`)
+    addTab(`---\ntitle: Tab ${tabStore.length + 1}\n---\n\n# Heading\n\n`)
     setSelectedTabIndex(tabStore.length - 1)
   }
 
@@ -104,7 +109,7 @@ export const Tabs = () => {
           }</Index>
         </div>
 
-        <button onClick={handleAddTabButtonClick} class="add">
+        <button class="add" onClick={handleAddTabButtonClick}>
           <svg width="16" height="16" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" stroke="currentcolor" aria-hidden="true">
             <path d="M1 4 H7 M4 1 V7"/>
           </svg>
@@ -160,6 +165,22 @@ export const Tabs = () => {
             </div>
           </div>
         }</Index>
+
+        {tabStore.length === 0 && (
+          <div class="no-tabs-warn">
+            <div class="inner">
+              You have no tabs!
+              <div class="buttons">
+                <button class="basic-button text" onClick={handleAddTabButtonClick}>
+                  <span>Add new tab</span>
+                </button>
+                <button class="basic-button text" onClick={handleRestoreCheatSheetButtonClick}>
+                  <span>Restore Cheat Sheet</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
