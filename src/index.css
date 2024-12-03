@@ -14,6 +14,12 @@
   clip-path: inset(50%);
 }
 
+@media (display-mode: standalone) {
+  .web-only {
+    display: none;
+  }
+}
+
 body {
   margin: 0;
   background: #123;
@@ -47,22 +53,16 @@ button {
 
   a {
     color: unset;
+    text-decoration-color: #0bf;
 
     &:hover {
       text-decoration-color: #0cf;
-    }
-  }
-
-  @media (display-mode: standalone) {
-    & {
-      display: none;
     }
   }
 }
 
 .content-and-editor {
   --max-content-width: calc(100cqw - 1.75rem);
-  --toggle-editor-width: calc(1.75rem - .5px); /* Fix sub-pixel rendering of grid in Chrome */
   position: relative;
   height: 100%;
   flex-grow: 1;
