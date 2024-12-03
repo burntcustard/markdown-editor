@@ -15,9 +15,9 @@ export default defineConfig({
     },
 
     manifest: {
-      name: 'random-encounter-pwa',
-      short_name: 'random-encounter-pwa',
-      description: 'random-encounter-pwa',
+      name: 'burnts Markdown Editor',
+      short_name: 'Markdown Editor',
+      description: 'A little markdown (.md) editing web app originally created hold TTRPG random encounter info',
       theme_color: '#ffffff',
     },
 

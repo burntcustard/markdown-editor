@@ -3,11 +3,3 @@
   display: grid;
   grid-template-rows: auto 1fr;
 }
-
-.app-title {
-  margin-inline: 14px;
-  font-size: 1.5rem;
-  margin-block-start: 1rem;
-  margin-block-end: .25rem;
-  min-height: 2rem;
-}

@@ -37,6 +37,22 @@ button {
   padding: 0;
 }
 
+.app-title {
+  margin-block: .5rem;
+  margin-inline: 14px;
+  min-height: 2rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+
+  a {
+    color: unset;
+
+    &:hover {
+      text-decoration-color: #0cf;
+    }
+  }
+}
+
 .content-and-editor {
   --max-content-width: calc(100cqw - 1.75rem);
   --toggle-editor-width: calc(1.75rem - .5px); /* Fix sub-pixel rendering of grid in Chrome */
@@ -123,9 +139,10 @@ button {
 }
 
 .tabs {
+  padding-block-end: 8px;
+  padding-inline: 8px;
   display: flex;
   flex-direction: column;
-  padding: 8px;
 }
 
 .panel-wrapper {
