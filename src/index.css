@@ -38,7 +38,8 @@ button {
 }
 
 .app-title {
-  margin-block: .5rem;
+  margin-block-start: .5rem;
+  margin-block-end: 0;
   margin-inline: 14px;
   min-height: 2rem;
   font-size: 1.25rem;
@@ -145,7 +146,7 @@ button {
 }
 
 .tabs {
-  padding-block-end: 8px;
+  padding-block: .5rem;
   padding-inline: 8px;
   display: flex;
   flex-direction: column;
